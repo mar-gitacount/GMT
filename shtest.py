@@ -1,5 +1,5 @@
 import subprocess
-
+# アップロード時に実行
 # Gitコマンドを実行する関数
 def run_git_command(command):
     result = subprocess.run(command, capture_output=True, text=True)
