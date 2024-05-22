@@ -41,6 +41,9 @@ if isinstance(num, int):
 else:
     print("Error: num should be an integer.")
 
+gitpush = "gitpush.py"
+subprocess.run(["python",gitpush])
+
 
 # ターミナルを開いてexitを実行する
 subprocess.run(["exit"])
