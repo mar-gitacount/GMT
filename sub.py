@@ -2,7 +2,7 @@ import subprocess
 from datetime import datetime
 
 # 任意の値をnumに代入
-firstnum = 1
+firstnum = 356
 num = 400
 today_date_file = datetime.now().strftime("%Y%m%d") + "error.txt"
 
