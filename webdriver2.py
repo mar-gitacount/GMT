@@ -122,6 +122,7 @@ options.add_argument("--headless")  # ヘッドレスモードを有効にする
 
 # SeleniumのWebDriverを初期化
 driver = webdriver.Chrome(options=options)  # または他のブラウザに合わせて選択
+driver = webdriver.Chrome()  # または他のブラウザに合わせて選択
 
 # URLを開く
 driver.get(url)
@@ -130,8 +131,18 @@ driver.get(url)
 wait = WebDriverWait(driver, 10)
 wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
 
+# ページが完全に読み込まれるまで待機するために特定の要素を待つ
+try:
+    # ここでは、指定したクラス名の要素が表示されるまで最大10秒待機
+    resultBox_items = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.CLASS_NAME, "FP-resultItem__textBox"))
+    )
+    # 要素が見つかった場合の処理
+    items = resultBox_items.find_all("div", class_="FP-resultItem__textBox")
+    print("要素が見つかりました。")
+except:
+    print("要素が見つかりませんでした。")
 
-# Seleniumがページのロードを待つなどの適切な待機処理が必要な場合はここで実施
 
 # ページのHTMLを取得
 page_source = driver.page_source
@@ -183,6 +194,7 @@ blank_pattern = r"\s+(\S+)"
 
 # print(resultBox_items)
 items = resultBox_items.find_all("div", class_="FP-resultItem__textBox")
+
 for item in items:
 
     a_tag_get = item.find("a")
